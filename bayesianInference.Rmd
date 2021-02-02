@@ -3,7 +3,7 @@ library(distill)
 ```
 
 ---
-title: "Bayesian Inference"
+title: "Bayesian inference in computational intelligence"
 author: 
   - name: "Rodrigo Pereira Cruz"
     email: pereirarodrigocs@gmail.com
@@ -18,10 +18,12 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-This is a notebook used for studying Bayesian inference in computational intelligence, which is focused on its theoretical applications and is oriented towards reasoning and decision making. The R programming language was chosen for the practical part of this project, given its orientation towards statistical analysis, ease of use and modular nature makes it well suited for this kind of task.  
+This is a notebook used for studying Bayesian inference in computational intelligence, which is focused on its theoretical applications. The R programming language was chosen for the practical part of this project, given its orientation towards statistical analysis, ease of use and modular nature makes it well suited for this kind of task.  
 
 ---
 
 # 1. Introduction
 
 ***
+
+Bayes' theorem is a fundamental part of probability and statistics. It is deeply tied to conditional probability, often expressed as $P(A | B)$ and read as the probability of A given B. Bayesian statistics relies on having prior probabilities, which constitutes the currently known information, and calculating posterior probabilities based on the prior and likelihood. This is a constant process, where the prior probabilities are constantly updated. 

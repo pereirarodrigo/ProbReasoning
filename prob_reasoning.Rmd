@@ -1,0 +1,122 @@
+```{r echo = FALSE}
+library(distill)
+```
+
+---
+title: "Probabilistic reasoning"
+author: 
+  - name: "Rodrigo Pereira Cruz"
+  
+    ```{r echo=FALSE, eval=FALSE}
+    affiliation: "School of Arts, Sciences and Humanities of the University of São Paulo"
+    email: rodrigo.pereira@usp.br 
+    ```
+    
+    email: pereirarodrigocs@gmail.com
+output:
+  html_document:
+    df_print: paged
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+---
+
+This is a notebook used for studying probabilistic reasoning in computational intelligence, which is focused on its theoretical applications and is oriented towards reasoning and decision making. The R programming language was chosen for the practical part of this project, given its orientation towards statistical analysis, ease of use and modular nature makes it well suited for this kind of task.  
+
+---
+
+# 1. Introduction
+
+***
+
+The concept of probability theory, for an autonomous agent, is of utmost importance for its optimal performance. Assuming that, for any scenario, a sample space $\Omega$ exists with events $\{\omega_1, \omega_2, \ldots, \omega_n\}$, an agent must act in a manner such that the probabilities of an event $\omega_n$ allows for making a precise decision that is advantageous to it.
+
+To illustrate the previous statement, a simple example will be used: assume that there are 2 possible paths for a machine to navigate through. The former is 20m long, while the latter's length is 16. The total length is of 36m, which comes from adding both paths' lengths. Disregarding arguments in favor of using graph theory algorithms (such as DFS and DFS) and following a purely probabilistic approach, for an agent $A$ to maximize its performance, which path must be chosen?
+
+We can see that, initially, each path has a probability of $\frac{1}{2}$ (or 50%) of being chosen. We'll consider, from now on, that this value will be the **cost** of choosing a particular path. However, this result alone is not enough to decide which option is the most adequate, given we need more details before any decision can be made. Using $\Omega$ as our sample space, we have:
+
+<br>
+
+$$\Omega = \{p_1, p_2\}$$
+
+<br>
+
+<style type="text/css">
+.table {
+
+    width: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    border-collapse: collapse;
+
+}
+
+table tr td th {
+
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    color: black
+
+}
+
+table tr td th:last-of-type {
+
+    border: none;
+
+}
+</style>
+
+$p_1$ | $p_2$ | $Total$ 
+:-:|:-:|:-:
+ 20 | 16 | 36 
+
+<br>
+
+To decide which path is the optimal choice, we must add a weight value to our initial probability, which is obtained through the relative frequency of each path's length. With $C$ being the path cost, we have:
+
+<br>
+
+$$C_1(p_1) = \frac{p_1}{total} = \frac{20}{36} \approx 0.55$$
+$$C_1(p_2) = \frac{p_2}{total} = \frac{16}{36} \approx 0.44$$
+
+<br>
+
+We can see that the weight of path $p_2$ is less than that of $p_1$. Thus, adding our obtained results to the initial costs, and with $TC$ as the total cost, we have:
+
+<br>
+
+$$TC_1(p_1, C_1) = \frac{1}{2} * 0.55 \approx 0.225$$
+$$TC_2(p_2, C_2) = \frac{1}{2} * 0.44 \approx 0.22$$ 
+
+Taking into account only the length of each path for our agent, the results obtained show that the second path is the optimal choice, given its overall cost is less than that of the first one. We can verify this by using an algorithm as well:
+
+```{r}
+
+# Simple function that returns the shortest path
+# The function receives a path's length as its argument
+# An indefinite number of path lengths can be used for testing
+
+path <- function(...){
+  vars <- list(...)
+  dst <- numeric()
+    
+  for(v in vars){
+    dst <- c(dst, 1/2 * v/Reduce("+", vars)) # creates a probability distribution
+  }
+    
+  return (ifelse(which.min(dst) == 1, vars[1], vars[which.min(dst)]))
+}
+
+print(paste0("The shortest path is: ", path(20, 16)))
+print(paste0("The shortest path is: ", path(12, 7, 3)))
+print(paste0("The shortest path is: ", path(13, 21, 14, 32, 8)))
+```
+
+Note that, given we used a very simple example, other factors that could have altered the agent's overall decision, such as obstacles in the second path, were not considered. If that were the case, it'd be possible to assign weights to such factors so that they could be used to compute the cost of choosing a particular path, thus allowing the previously used calculations to remain almost unchanged. This presents a challenge in itself, however, as each factor would need to have a particular weight value - assigning numbers at random would be an impractical option, as would be adding each factor by hand. Thus, it is here that the assistance of a knowledge base of some sort, such as a database, and perhaps some kind of sensor would be required.
+
+---

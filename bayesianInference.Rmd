@@ -116,7 +116,15 @@ $$f(p) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)  \Gamma(\beta)} p^{\alpha 
 
 <br>
 
-Where $0 \leq p \leq 1, \alpha > 0, \beta > 0$ and $\Gamma$ is a factorial:
+where $0 \leq p \leq 1, \alpha > 0, \beta > 0$ and $\Gamma$ is a factorial:
+
+<br>
+
+$$\Gamma(n) = (n - 1)! = (n - 1) \times (n - 2) \times ... \times 1$$
+
+<br>
+
+where $n$ is the number of trials.
 
 ---
 

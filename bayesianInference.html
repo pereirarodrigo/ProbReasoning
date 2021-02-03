@@ -201,11 +201,11 @@ summary {
 <div id="introduction" class="section level1">
 <h1>1. Introduction</h1>
 <hr />
-<p>Bayes’ theorem is a fundamental part of probability and statistics. It is deeply tied to conditional probability, often expressed as <span class="math inline">\(P(A | B)\)</span> and read as the probability of A given B. Bayesian statistics relies on having prior probabilities, which constitutes the currently known information, and calculating posterior probabilities based on the prior and likelihood. This is a constant process, where the prior probabilities are constantly updated. Bayes’ theorem is usually defined as:</p>
+<p>Bayes’ theorem is a fundamental part of probability and statistics. It is deeply tied to conditional probability, often expressed as <span class="math inline">\(P(A | B)\)</span> and read as the probability of A given B. Bayesian statistics relies on having prior probabilities, which constitutes the currently known information, and calculating posterior probabilities based on the prior and likelihood. This is a constant process, where the prior probabilities are constantly updated. Bayes’ theorem is usually defined as</p>
 <p><br></p>
 <p><span class="math display">\[P(A | B) = \frac{P(B | A) \space P(A)}{P(B)}\]</span></p>
 <p><br></p>
-<p>Where:</p>
+<p>where</p>
 <p><br></p>
 <ul>
 <li><span class="math inline">\(P(A | B)\)</span> = posterior probability;</li>
@@ -318,20 +318,24 @@ table(bayes_predictions, iris_dataset$Species)</code></pre>
 <h1>2. Continuous random variables</h1>
 <hr />
 <p>Although the usage of probability mass functions (PMFs) is common when dealing with probability distributions, Bayesian inference often deals with continuous variables, which requires the use of probability density functions (PDFs).</p>
-<p>When it comes to PDFs, it’s impossible to use a precise probability value for the event we’re interested in - calculating the <strong>exact</strong> probability of raining exactly 2mm in a week, for example, is impractical. When situations like this arise, the need of using ranges for our values is made absolutely necessary and, thus, dealing with continuous variables becomes a matter of calculating the area between inferior and superior ranges. Mathematically, this can be expressed as:</p>
+<p>When it comes to PDFs, it’s impossible to use a precise probability value for the event we’re interested in - calculating the <strong>exact</strong> probability of raining exactly 2mm in a week, for example, is impractical. When situations like this arise, the need of using ranges for our values is made absolutely necessary and, thus, dealing with continuous variables becomes a matter of calculating the area between inferior and superior ranges. Mathematically, this can be expressed as</p>
 <p><br></p>
 <p><span class="math display">\[P(a \leq X \leq b) = \int_{a}^{b} f_X(x)dx = F(b) - F(a) \]</span></p>
 <p><br></p>
 <p>This is, of course, only a general overview, as some of the most common continuous distributions - normal, uniform, beta and gamma - are different and are used for different tasks. However, what all of them share in Bayesian statistics is the presence of prior elicitation, which is a belief in one’s data distribution. For bayesians, this elicitation expresses their belief in terms of personal probabilities and must adhere to the laws or probability (e.g. having a probability of 150% of winning a lottery is invalid for a prior elicitation). Thus, given a bayesian has this belief in their distribution, we must deal with knowing the probability of success of that data.</p>
-<p>In a distribution, the probability of success, known as <span class="math inline">\(p\)</span>, is not usually known. For example, when tossing a coin, the probability of heads is, for a balanced coin, 0.5 or <span class="math inline">\(\frac{1}{2}\)</span>. However, we can’t know if a coin is balanced, thus we <strong>predict</strong> that this value, our <span class="math inline">\(p\)</span>, must be closer to 0.5 than 0 or 1. A bayesian will express their belief in a particular value of <span class="math inline">\(p\)</span> through a probability distribution, with the <strong>beta family</strong> being a popular choice, usually being defined, mathematically, as:</p>
+<p>In a distribution, the probability of success, known as <span class="math inline">\(p\)</span>, is not usually known. For example, when tossing a coin, the probability of heads is, for a balanced coin, 0.5 or <span class="math inline">\(\frac{1}{2}\)</span>. However, we can’t know if a coin is balanced, thus we <strong>predict</strong> that this value, our <span class="math inline">\(p\)</span>, must be closer to 0.5 than 0 or 1. A bayesian will express their belief in a particular value of <span class="math inline">\(p\)</span> through a probability distribution, with the <strong>beta family</strong> being a popular choice, usually being defined, mathematically, as</p>
 <p><br></p>
 <p><span class="math display">\[p \sim beta(\alpha, \beta)\]</span></p>
 <p><br></p>
-<p>Whose PDF is:</p>
+<p>whose PDF is</p>
 <p><br></p>
 <p><span class="math display">\[f(p) = \frac{\Gamma(\alpha + \beta)}{\Gamma(\alpha)  \Gamma(\beta)} p^{\alpha - 1} (1 - p)^{\beta - 1}\]</span></p>
 <p><br></p>
-<p>Where <span class="math inline">\(0 \leq p \leq 1, \alpha &gt; 0, \beta &gt; 0\)</span> and <span class="math inline">\(\Gamma\)</span> is a factorial:</p>
+<p>where <span class="math inline">\(0 \leq p \leq 1, \alpha &gt; 0, \beta &gt; 0\)</span> and <span class="math inline">\(\Gamma\)</span> is a factorial:</p>
+<p><br></p>
+<p><span class="math display">\[\Gamma(n) = (n - 1)! = (n - 1) \times (n - 2) \times ... \times 1\]</span></p>
+<p><br></p>
+<p>where <span class="math inline">\(n\)</span> is the number of trials.</p>
 <hr />
 </div>
 <div id="bayesian-decision-making-and-loss-functions" class="section level1">

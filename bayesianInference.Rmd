@@ -64,6 +64,8 @@ When it comes to computing, Bayes' theorem is already popular in the field of ma
 # The model efficiently classifies 3 types of iris flowers: setosa, versicolor and virginica
 
 library(e1071)
+library(caret)
+
 data("iris")
 
 iris_dataset <- as.data.frame(iris)
@@ -75,4 +77,6 @@ bayes
 bayes_predictions <- predict(bayes, iris_dataset)
 
 table(bayes_predictions, iris_dataset$Species)
+
+confusionMatrix(iris$Species, bayes_predictions)
 ```

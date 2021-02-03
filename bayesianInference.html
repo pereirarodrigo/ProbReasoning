@@ -226,7 +226,10 @@ summary {
 # The model efficiently classifies 3 types of iris flowers: setosa, versicolor and virginica
 
 library(e1071)
-data(&quot;iris&quot;)
+library(caret)</code></pre>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Loading required package: ggplot2</code></pre>
+<pre class="r"><code>data(&quot;iris&quot;)
 
 iris_dataset &lt;- as.data.frame(iris)
 bayes &lt;- naiveBayes(Species ~., data = iris_dataset)
@@ -276,6 +279,37 @@ table(bayes_predictions, iris_dataset$Species)</code></pre>
 ##        setosa         50          0         0
 ##        versicolor      0         47         3
 ##        virginica       0          3        47</code></pre>
+<pre class="r"><code>confusionMatrix(iris$Species, bayes_predictions)</code></pre>
+<pre><code>## Confusion Matrix and Statistics
+## 
+##             Reference
+## Prediction   setosa versicolor virginica
+##   setosa         50          0         0
+##   versicolor      0         47         3
+##   virginica       0          3        47
+## 
+## Overall Statistics
+##                                          
+##                Accuracy : 0.96           
+##                  95% CI : (0.915, 0.9852)
+##     No Information Rate : 0.3333         
+##     P-Value [Acc &gt; NIR] : &lt; 2.2e-16      
+##                                          
+##                   Kappa : 0.94           
+##                                          
+##  Mcnemar&#39;s Test P-Value : NA             
+## 
+## Statistics by Class:
+## 
+##                      Class: setosa Class: versicolor Class: virginica
+## Sensitivity                 1.0000            0.9400           0.9400
+## Specificity                 1.0000            0.9700           0.9700
+## Pos Pred Value              1.0000            0.9400           0.9400
+## Neg Pred Value              1.0000            0.9700           0.9700
+## Prevalence                  0.3333            0.3333           0.3333
+## Detection Rate              0.3333            0.3133           0.3133
+## Detection Prevalence        0.3333            0.3333           0.3333
+## Balanced Accuracy           1.0000            0.9550           0.9550</code></pre>
 </div>
 
 

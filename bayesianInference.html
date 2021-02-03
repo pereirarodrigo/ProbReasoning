@@ -314,9 +314,13 @@ table(bayes_predictions, iris_dataset$Species)</code></pre>
 ## Balanced Accuracy           1.0000            0.9550           0.9550</code></pre>
 <hr />
 </div>
-<div id="bayesian-inference" class="section level1">
-<h1>2. Bayesian inference</h1>
+<div id="continuous-random-variables" class="section level1">
+<h1>2. Continuous random variables</h1>
 <hr />
+<p>Although the usage of probability mass functions (PMFs) is common when dealing with probability distributions, Bayesian inference often deals with continuous variables, which requires the use of probability density functions (PDFs).</p>
+<p>When it comes to PDFs, it’s impossible to use a precise probability value for the event we’re interested in - calculating the <strong>exact</strong> probability of raining exactly 2mm in a week, for example, is impractical. When situations like this arise, the need of using ranges for our values is made absolutely necessary and, thus, dealing with continuous variables becomes a matter of calculating the area between inferior and superior ranges. Mathematically, this can be expressed as:</p>
+<p><br></p>
+<p><span class="math display">\[P(a \leq X \leq b) = \int_{a}^{b} f_X(x)dx = F(b) - F(a) \]</span></p>
 </div>
 
 

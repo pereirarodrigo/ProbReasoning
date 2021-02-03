@@ -26,4 +26,30 @@ This is a notebook used for studying Bayesian inference in computational intelli
 
 ***
 
-Bayes' theorem is a fundamental part of probability and statistics. It is deeply tied to conditional probability, often expressed as $P(A | B)$ and read as the probability of A given B. Bayesian statistics relies on having prior probabilities, which constitutes the currently known information, and calculating posterior probabilities based on the prior and likelihood. This is a constant process, where the prior probabilities are constantly updated. 
+Bayes' theorem is a fundamental part of probability and statistics. It is deeply tied to conditional probability, often expressed as $P(A | B)$ and read as the probability of A given B. Bayesian statistics relies on having prior probabilities, which constitutes the currently known information, and calculating posterior probabilities based on the prior and likelihood. This is a constant process, where the prior probabilities are constantly updated. Bayes' theorem is usually defined as:
+
+<br>
+
+$$P(A | B) = \frac{P(B | A) \space P(A)}{P(B)}$$
+
+<br>
+
+Where:
+
+<br>
+
+* $P(A | B)$ = posterior probability;
+* $P(B | A)$ = likelihood;
+* $P(A)$ = prior probability;
+* $P(B)$ = marginal probability.
+
+<br>
+
+Oftentimes, this definition is expanded upon when $P(B)$ isn't clearly defined:
+
+<br>
+
+$$\begin{align}
+    P(A | B) &= \frac{P(B | A) \space P(A)}{P(B)} \\
+             & = \space \frac{P(B | A) \space P(A)}{P(B | A) \space P(A) + P(B | \neg A) \space P(\neg A)}
+\end{align}$$

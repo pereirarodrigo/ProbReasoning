@@ -382,15 +382,40 @@ plot(beta_dist,
 <p><br></p>
 <p>A quick example is given below, where we have some random data, our estimate is 12 and we’re using the 0/1 loss:</p>
 <p><br></p>
+<center>
+<strong>Table 1:</strong> L0: 0/1 for estimate 12
+</center>
+<p><br></p>
 <style>
-table th:first-of-type {
+.table {
     width: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    border: 1px solid black;
+    border-collapse: collapse;
 }
-table th:nth-of-type(2) {
-    width: 20%;
+
+th:nth-child(1){
+     width: 30%;
 }
-table th:nth-of-type(3) {
-    width: 50%;
+
+th:nth-child(2){
+     width: 40%;
+}
+
+th:nth-child(3){
+     width: 30%;
+}
+
+table tr td th {
+    border-right: 1px solid black;
+    border-left: 1px solid black;
+    border-bottom: 1px solid black;
+    color: black
+}
+
+table tr td th:last-of-type {
+    border: none;
 }
 </style>
 <table>
@@ -398,7 +423,7 @@ table th:nth-of-type(3) {
 <tr class="header">
 <th align="center"><span class="math inline">\(i\)</span></th>
 <th align="center"><span class="math inline">\(x_i\)</span></th>
-<th align="center"><span class="math inline">\(L0: 0/1\)</span></th>
+<th align="center"><span class="math inline">\(L_0: 0/1\)</span></th>
 </tr>
 </thead>
 <tbody>
@@ -430,7 +455,7 @@ table th:nth-of-type(3) {
 <tr class="even">
 <td align="center">-</td>
 <td align="center"><strong>Total</strong></td>
-<td align="center">4</td>
+<td align="center"><strong>4</strong></td>
 </tr>
 </tbody>
 </table>

@@ -18,7 +18,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ---
 
-This is a notebook used for studying Bayesian inference in computational intelligence, which is focused on its theoretical applications. The R programming language was chosen for the practical part of this project, given its orientation towards statistical analysis, ease of use and modular nature makes it well suited for this kind of task.  
+This is a notebook used for studying Bayesian inference in computational intelligence, which is focused on its theoretical applications. The R programming language was chosen for the practical part of this project, as its orientation towards statistical analysis, ease of use and modular nature makes it well suited for this kind of task.  
 
 ---
 
@@ -98,9 +98,9 @@ $$P(a \leq X \leq b) = \int_{a}^{b} f_X(x)dx = F(b) - F(a) $$
 
 <br>
 
-This is, of course, only a general overview, as some of the most common continuous distributions - normal, uniform, beta and gamma - are different and are used for different tasks. However, what all of them share in Bayesian statistics is the presence of prior elicitation, which is a belief in one's data distribution. For bayesians, this elicitation expresses their belief in terms of personal probabilities and must adhere to the laws or probability (e.g. having a probability of 150% of winning a lottery is invalid for a prior elicitation). Thus, given a bayesian has this belief in their distribution, we must deal with knowing the probability of success of that data.
+This is, of course, only a general overview, as some of the most common continuous distributions - normal, uniform, beta and gamma - are different and are used for different tasks. However, what all of them share in Bayesian statistics is the presence of prior elicitation, which is a belief in one's data distribution. For Bayesians, this elicitation expresses their belief in terms of personal probabilities and must adhere to the laws or probability (e.g. having a probability of 150% of winning a lottery is invalid for a prior elicitation). Thus, given a Bayesian has this belief in their distribution, we must deal with knowing the probability of success of that data.
 
-In a distribution, the probability of success, known as $p$, is not usually known. For example, when tossing a coin, the probability of heads is, for a balanced coin, 0.5 or $\frac{1}{2}$. However, we can't know if a coin is balanced, thus we **predict** that this value, our $p$, must be closer to 0.5 than 0 or 1. A bayesian will express their belief in a particular value of $p$ through a probability distribution, with the **beta family** being a popular choice, usually being defined, mathematically, as
+In a distribution, the probability of success, known as $p$, is not usually known. For example, when tossing a coin, the probability of heads is, for a balanced coin, 0.5 or $\frac{1}{2}$. However, we can't know if a coin is balanced, thus we **predict** that this value, our $p$, must be closer to 0.5 than 0 or 1. A Bayesian will express their belief in a particular value of $p$ through a probability distribution, with the **beta family** being a popular choice, usually being defined, mathematically, as
 
 <br>
 
@@ -156,3 +156,58 @@ plot(beta_dist,
 
 ***
 
+The posterior probability is the basis of any Bayesian inference, as it's essentially updated knowledge given it incorporates prior information with new data. However, we might want to express a credible interval as our inference, which makes using posterior distributions difficult - because of this, we are now dealing with decision theory and, thus, must make use of loss functions for optimization. There are usually three loss functions that are used, which are:
+
+<br>
+
+* **Linear** = uses a median as its best estimate;
+* **Quadratic** = uses a mean as its best estimate;
+* **0/1** = uses a mode as its best estimate.
+
+<br>
+
+Starting with 0/1 loss, the goal is to check if each value in the posterior distribution is equal to, or different than, an estimate. Should the value be equal to your estimate, there will be no loss; otherwise, a loss of 1 point will happen. Mathematically, this function is defined as
+
+<br>
+
+$$L_{0, i}(0, g) = \begin{cases}
+                      0 & if \space g = x_i \\
+                      1 & otherwise
+                   \end{cases}$$
+                   
+<br>
+
+where $g$ is our guess or an estimate. The total loss is defined as
+
+<br>
+
+$$L_0 = \sum_i L_{0, i}(0, g)$$
+
+<br>
+
+A quick example is given below, where we have some random data, our estimate is 12 and we're using the 0/1 loss:
+
+<br>
+
+<style>
+table th:first-of-type {
+    width: 30%;
+}
+table th:nth-of-type(2) {
+    width: 20%;
+}
+table th:nth-of-type(3) {
+    width: 50%;
+}
+</style>
+
+$i$ | $x_i$ | $L0: 0/1$
+:--:|:-----:|:---------:
+ 1  |   2   |   1
+ 2  |   6   |   1
+ 3  |   3   |   1
+ 4  |   12  |   0
+ 5  |   14  |   1
+ -  | **Total** |   4
+ 
+<br>

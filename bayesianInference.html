@@ -196,7 +196,7 @@ summary {
 
 
 <hr />
-<p>This is a notebook used for studying Bayesian inference in computational intelligence, which is focused on its theoretical applications. The R programming language was chosen for the practical part of this project, given its orientation towards statistical analysis, ease of use and modular nature makes it well suited for this kind of task.</p>
+<p>This is a notebook used for studying Bayesian inference in computational intelligence, which is focused on its theoretical applications. The R programming language was chosen for the practical part of this project, as its orientation towards statistical analysis, ease of use and modular nature makes it well suited for this kind of task.</p>
 <hr />
 <div id="introduction" class="section level1">
 <h1>1. Introduction</h1>
@@ -322,8 +322,8 @@ table(bayes_predictions, iris_dataset$Species)</code></pre>
 <p><br></p>
 <p><span class="math display">\[P(a \leq X \leq b) = \int_{a}^{b} f_X(x)dx = F(b) - F(a) \]</span></p>
 <p><br></p>
-<p>This is, of course, only a general overview, as some of the most common continuous distributions - normal, uniform, beta and gamma - are different and are used for different tasks. However, what all of them share in Bayesian statistics is the presence of prior elicitation, which is a belief in one’s data distribution. For bayesians, this elicitation expresses their belief in terms of personal probabilities and must adhere to the laws or probability (e.g. having a probability of 150% of winning a lottery is invalid for a prior elicitation). Thus, given a bayesian has this belief in their distribution, we must deal with knowing the probability of success of that data.</p>
-<p>In a distribution, the probability of success, known as <span class="math inline">\(p\)</span>, is not usually known. For example, when tossing a coin, the probability of heads is, for a balanced coin, 0.5 or <span class="math inline">\(\frac{1}{2}\)</span>. However, we can’t know if a coin is balanced, thus we <strong>predict</strong> that this value, our <span class="math inline">\(p\)</span>, must be closer to 0.5 than 0 or 1. A bayesian will express their belief in a particular value of <span class="math inline">\(p\)</span> through a probability distribution, with the <strong>beta family</strong> being a popular choice, usually being defined, mathematically, as</p>
+<p>This is, of course, only a general overview, as some of the most common continuous distributions - normal, uniform, beta and gamma - are different and are used for different tasks. However, what all of them share in Bayesian statistics is the presence of prior elicitation, which is a belief in one’s data distribution. For Bayesians, this elicitation expresses their belief in terms of personal probabilities and must adhere to the laws or probability (e.g. having a probability of 150% of winning a lottery is invalid for a prior elicitation). Thus, given a Bayesian has this belief in their distribution, we must deal with knowing the probability of success of that data.</p>
+<p>In a distribution, the probability of success, known as <span class="math inline">\(p\)</span>, is not usually known. For example, when tossing a coin, the probability of heads is, for a balanced coin, 0.5 or <span class="math inline">\(\frac{1}{2}\)</span>. However, we can’t know if a coin is balanced, thus we <strong>predict</strong> that this value, our <span class="math inline">\(p\)</span>, must be closer to 0.5 than 0 or 1. A Bayesian will express their belief in a particular value of <span class="math inline">\(p\)</span> through a probability distribution, with the <strong>beta family</strong> being a popular choice, usually being defined, mathematically, as</p>
 <p><br></p>
 <p><span class="math display">\[p \sim beta(\alpha, \beta)\]</span></p>
 <p><br></p>
@@ -361,6 +361,80 @@ plot(beta_dist,
 <div id="bayesian-decision-making-and-loss-functions" class="section level1">
 <h1>3. Bayesian decision making and loss functions</h1>
 <hr />
+<p>The posterior probability is the basis of any Bayesian inference, as it’s essentially updated knowledge given it incorporates prior information with new data. However, we might want to express a credible interval as our inference, which makes using posterior distributions difficult - because of this, we are now dealing with decision theory and, thus, must make use of loss functions for optimization. There are usually three loss functions that are used, which are:</p>
+<p><br></p>
+<ul>
+<li><strong>Linear</strong> = uses a median as its best estimate;</li>
+<li><strong>Quadratic</strong> = uses a mean as its best estimate;</li>
+<li><strong>0/1</strong> = uses a mode as its best estimate.</li>
+</ul>
+<p><br></p>
+<p>Starting with 0/1 loss, the goal is to check if each value in the posterior distribution is equal to, or different than, an estimate. Should the value be equal to your estimate, there will be no loss; otherwise, a loss of 1 point will happen. Mathematically, this function is defined as</p>
+<p><br></p>
+<p><span class="math display">\[L_{0, i}(0, g) = \begin{cases}
+                      0 &amp; if \space g = x_i \\
+                      1 &amp; otherwise
+                   \end{cases}\]</span></p>
+<p><br></p>
+<p>where <span class="math inline">\(g\)</span> is our guess or an estimate. The total loss is defined as</p>
+<p><br></p>
+<p><span class="math display">\[L_0 = \sum_i L_{0, i}(0, g)\]</span></p>
+<p><br></p>
+<p>A quick example is given below, where we have some random data, our estimate is 12 and we’re using the 0/1 loss:</p>
+<p><br></p>
+<style>
+table th:first-of-type {
+    width: 30%;
+}
+table th:nth-of-type(2) {
+    width: 20%;
+}
+table th:nth-of-type(3) {
+    width: 50%;
+}
+</style>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(i\)</span></th>
+<th align="center"><span class="math inline">\(x_i\)</span></th>
+<th align="center"><span class="math inline">\(L0: 0/1\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">6</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">3</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">12</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">14</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center"><strong>Total</strong></td>
+<td align="center">4</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
 </div>
 
 

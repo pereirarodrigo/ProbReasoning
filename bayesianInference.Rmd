@@ -126,6 +126,30 @@ $$\Gamma(n) = (n - 1)! = (n - 1) \times (n - 2) \times ... \times 1$$
 
 where $n$ is the number of trials.
 
+<br>
+
+When it comes to computing, it's possible to write a very simple R script that generates a beta distribution, with multiple options being available. An example is shown below:
+
+```{r}
+# Generating a beta distribution out of a sequence of values
+
+values <- seq(0, 1, 0.02)
+
+# dbeta gives us a PDF
+# shape1 = alpha and shape2 = beta
+
+beta_dist <- dbeta(values, shape1 = 2, shape2 = 3)
+
+# Plotting the results
+
+plot(beta_dist, 
+     main = "A beta distribution",
+     xlab = "x", 
+     ylab = "y",
+     col = "blue",
+     type = "o")
+```
+
 ---
 
 # 3. Bayesian decision making and loss functions

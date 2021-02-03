@@ -218,7 +218,7 @@ summary {
 <p><br></p>
 <p><span class="math display">\[\begin{align}
     P(A | B) &amp;= \frac{P(B | A) \space P(A)}{P(B)} \\
-             &amp; = \space \frac{P(B | A) \space P(A)}{P(B | A) \space P(A) + P(B | \neg A) \space P(\neg A)}
+             &amp;= \space \frac{P(B | A) \space P(A)}{P(B | A) \space P(A) + P(B | \neg A) \space P(\neg A)}
 \end{align}\]</span></p>
 <p><br></p>
 <p>When it comes to computing, Bayes’ theorem is already popular in the field of machine learning, where it’s known as the naive Bayes algorithm and is used as a classifier. A simple usage can be seen below:</p>
@@ -234,7 +234,7 @@ library(caret)</code></pre>
 iris_dataset &lt;- as.data.frame(iris)
 bayes &lt;- naiveBayes(Species ~., data = iris_dataset)
 
-# We can check the model by typing &quot;bayes&quot;
+# Check the model
 bayes</code></pre>
 <pre><code>## 
 ## Naive Bayes Classifier for Discrete Predictors
@@ -273,6 +273,8 @@ bayes</code></pre>
 ##   virginica  2.026 0.2746501</code></pre>
 <pre class="r"><code>bayes_predictions &lt;- predict(bayes, iris_dataset)
 
+# Checking the predictions, the confusion matrix and the accuracy
+
 table(bayes_predictions, iris_dataset$Species)</code></pre>
 <pre><code>##                  
 ## bayes_predictions setosa versicolor virginica
@@ -310,6 +312,11 @@ table(bayes_predictions, iris_dataset$Species)</code></pre>
 ## Detection Rate              0.3333            0.3133           0.3133
 ## Detection Prevalence        0.3333            0.3333           0.3333
 ## Balanced Accuracy           1.0000            0.9550           0.9550</code></pre>
+<hr />
+</div>
+<div id="bayesian-inference" class="section level1">
+<h1>2. Bayesian inference</h1>
+<hr />
 </div>
 
 

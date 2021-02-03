@@ -51,7 +51,7 @@ Oftentimes, this definition is expanded upon when $P(B)$ isn't clearly defined:
 
 $$\begin{align}
     P(A | B) &= \frac{P(B | A) \space P(A)}{P(B)} \\
-             & = \space \frac{P(B | A) \space P(A)}{P(B | A) \space P(A) + P(B | \neg A) \space P(\neg A)}
+             &= \space \frac{P(B | A) \space P(A)}{P(B | A) \space P(A) + P(B | \neg A) \space P(\neg A)}
 \end{align}$$
 
 <br>
@@ -71,12 +71,27 @@ data("iris")
 iris_dataset <- as.data.frame(iris)
 bayes <- naiveBayes(Species ~., data = iris_dataset)
 
-# We can check the model by typing "bayes"
+# Check the model
 bayes
 
 bayes_predictions <- predict(bayes, iris_dataset)
+
+# Checking the predictions, the confusion matrix and the accuracy
 
 table(bayes_predictions, iris_dataset$Species)
 
 confusionMatrix(iris$Species, bayes_predictions)
 ```
+---
+
+# 2. Continuous random variables
+
+***
+
+Although the usage of probability mass functions (PMFs) is common when dealing with probability distributions, Bayesian inference often deals with continuous variables, which requires the use of probability density functions (PDFs).
+
+When it comes to PDFs, it's impossible to use a precise probability value for the event we're interested in - calculating the **exact** probability of raining exactly 2mm in a week, for example, is impractical. When situations like this arise, the need of using ranges for our values is made absolutely necessary and, thus, dealing with continuous variables becomes a matter of calculating the area between inferior and superior ranges. Mathematically, this can be expressed as:
+
+<br>
+
+$$P(a \leq X \leq b) = \int_{a}^{b} f_X(x)dx = F(b) - F(a) $$

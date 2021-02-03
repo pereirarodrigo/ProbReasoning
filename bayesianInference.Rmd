@@ -53,3 +53,26 @@ $$\begin{align}
     P(A | B) &= \frac{P(B | A) \space P(A)}{P(B)} \\
              & = \space \frac{P(B | A) \space P(A)}{P(B | A) \space P(A) + P(B | \neg A) \space P(\neg A)}
 \end{align}$$
+
+<br>
+
+When it comes to computing, Bayes' theorem is already popular in the field of machine learning, where it's known as the naive Bayes algorithm and is used as a classifier. A simple usage can be seen below:
+
+```{r}
+
+# A simple use of the naive Bayes model for classification
+# The model efficiently classifies 3 types of iris flowers: setosa, versicolor and virginica
+
+library(e1071)
+data("iris")
+
+iris_dataset <- as.data.frame(iris)
+bayes <- naiveBayes(Species ~., data = iris_dataset)
+
+# We can check the model by typing "bayes"
+bayes
+
+bayes_predictions <- predict(bayes, iris_dataset)
+
+table(bayes_predictions, iris_dataset$Species)
+```

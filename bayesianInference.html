@@ -383,7 +383,7 @@ plot(beta_dist,
 <p>A quick example is given below, where we have some random data, our estimate is 12 and we’re using the 0/1 loss:</p>
 <p><br></p>
 <center>
-<strong>Table 1:</strong> L0: 0/1 for estimate 12
+<strong>Table 1:</strong> <span class="math inline">\(L_0\)</span>: 0/1 for estimate 12
 </center>
 <p><br></p>
 <style>
@@ -456,6 +456,58 @@ table tr td th:last-of-type {
 <td align="center">-</td>
 <td align="center"><strong>Total</strong></td>
 <td align="center"><strong>4</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>Moving on to the linear loss function, it’s defined, mathematically, as</p>
+<p><br></p>
+<p><span class="math display">\[L_1(g) = \sum_i |x_i - g|\]</span></p>
+<p><br></p>
+<p>Note that we need absolute values here, given overestimates and underestimates do not cancel out. By calculating the median of some random data, and with our estimate being 6, we have</p>
+<p><br></p>
+<center>
+<strong>Table 2:</strong> <span class="math inline">\(L_1\)</span>: linear loss for estimate 6
+</center>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(i\)</span></th>
+<th align="center"><span class="math inline">\(x_i\)</span></th>
+<th align="center"><span class="math inline">\(L_1: |x_i - 6|\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">10</td>
+<td align="center">4</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">3</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">7</td>
+<td align="center">1</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">6</td>
+<td align="center">0</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">6</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center"><strong>Total</strong></td>
+<td align="center"><strong>8</strong></td>
 </tr>
 </tbody>
 </table>

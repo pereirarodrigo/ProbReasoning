@@ -189,7 +189,7 @@ A quick example is given below, where we have some random data, our estimate is 
 
 <br>
 
-<center> **Table 1:** L0: 0/1 for estimate 12 </center>
+<center> **Table 1:** $L_0$: 0/1 for estimate 12 </center>
 
 <br>
 
@@ -234,5 +234,32 @@ table tr td th:last-of-type {
 | 4  |   12  |   0
 | 5  |   14  |   1
 | -  | **Total** |  **4**
+ 
+<br>
+
+Moving on to the linear loss function, it's defined, mathematically, as 
+
+<br>
+
+$$L_1(g) = \sum_i |x_i - g|$$
+
+<br>
+
+Note that we need absolute values here, given overestimates and underestimates do not cancel out. By calculating the median of some random data, and with our estimate being 6, we have
+
+<br>
+
+<center> **Table 2:** $L_1$: linear loss for estimate 6 </center>
+
+<br>
+
+|$i$ |$x_i$   |$L_1: |x_i - 6|$
+|:--:|:------:|:--------------:
+| 1  |   10   |   4
+| 2  |   3    |   3
+| 3  |   7    |   1
+| 4  |   6    |   0
+| 5  |   6    |   0
+| -  | **Total** |  **8**
  
 <br>

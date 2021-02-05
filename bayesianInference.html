@@ -196,7 +196,27 @@ summary {
 
 
 <hr />
+<style>
+blockquote {
+  background: #E8E8E8;
+  border-left: 10px solid #D0D0D0;
+}
+
+blockquote:before {
+  color: #D0D0D0;
+  line-height: 0.1em;
+  margin-right: 0.25em;
+  vertical-align: -0.4em;
+}
+
+blockquote p {
+  display: inline;
+  font-size: 0.8em;
+}
+</style>
+<blockquote>
 <p>This is a notebook used for studying Bayesian inference in computational intelligence, which is focused on its theoretical applications. The R programming language was chosen for the practical part of this project, as its orientation towards statistical analysis, ease of use and modular nature makes it well suited for this kind of task.</p>
+</blockquote>
 <hr />
 <div id="introduction" class="section level1">
 <h1>1. Introduction</h1>
@@ -359,12 +379,12 @@ plot(beta_dist,
 <hr />
 </div>
 <div id="bayesian-decision-making-and-loss-functions" class="section level1">
-<h1>3. Bayesian decision making and loss functions</h1>
+<h1>3. Bayesian decision-making and loss functions</h1>
 <hr />
-<p>The posterior probability is the basis of any Bayesian inference, as it’s essentially updated knowledge given it incorporates prior information with new data. However, we might want to express a credible interval as our inference, which makes using posterior distributions difficult - because of this, we are now dealing with decision theory and, thus, must make use of loss functions for optimization. There are usually three loss functions that are used, which are:</p>
+<p>The posterior probability is the basis of any Bayesian inference, as it’s essentially updated knowledge given it incorporates prior information with new data. However, we might want to express a credible interval as our inference, which makes using posterior distributions difficult - because of this, we are now dealing with decision theory and, thus, must make use of loss functions for optimization. There are usually three loss functions that are used and are minimized at specific points, which are:</p>
 <p><br></p>
 <ul>
-<li><strong>Linear</strong> = uses a median as its best estimate;</li>
+<li><strong>Linear</strong> = uses a median as its best estimate (minimized point);</li>
 <li><strong>Quadratic</strong> = uses a mean as its best estimate;</li>
 <li><strong>0/1</strong> = uses a mode as its best estimate.</li>
 </ul>
@@ -511,6 +531,82 @@ table tr td th:last-of-type {
 </tr>
 </tbody>
 </table>
+<p><br></p>
+<p>The squared loss function works similarly to the two previously mentioned loss functions, being defined, mathematically, as</p>
+<p><br></p>
+<p><span class="math display">\[L_2(g) = \sum_i (x_i - g)^2\]</span></p>
+<p><br></p>
+<p>By calculating the mean of some random data, and with our estimate being 7, we have</p>
+<p><br></p>
+<center>
+<strong>Table 3:</strong> <span class="math inline">\(L_2\)</span>: linear loss for estimate 7
+</center>
+<p><br></p>
+<table>
+<thead>
+<tr class="header">
+<th align="center"><span class="math inline">\(i\)</span></th>
+<th align="center"><span class="math inline">\(x_i\)</span></th>
+<th align="center"><span class="math inline">\(L_2: (x_i - 7)^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">25</td>
+</tr>
+<tr class="even">
+<td align="center">2</td>
+<td align="center">8</td>
+<td align="center">1</td>
+</tr>
+<tr class="odd">
+<td align="center">3</td>
+<td align="center">7</td>
+<td align="center">0</td>
+</tr>
+<tr class="even">
+<td align="center">4</td>
+<td align="center">0</td>
+<td align="center">49</td>
+</tr>
+<tr class="odd">
+<td align="center">5</td>
+<td align="center">4</td>
+<td align="center">9</td>
+</tr>
+<tr class="even">
+<td align="center">-</td>
+<td align="center"><strong>Total</strong></td>
+<td align="center"><strong>84</strong></td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<p>There is no single best option when it comes to loss functions, as each of them will point out to a different value of the distribution that is the optimized value: <span class="math inline">\(L_0\)</span> will point to the distribution’s mode, while <span class="math inline">\(L_1\)</span> and <span class="math inline">\(L_2\)</span> will point to the median and mean, respectively. It will depend on which of them is the best fit for a particular report.</p>
+<hr />
+</div>
+<div id="minimizing-expected-loss-for-bayesian-hypothesis-testing" class="section level1">
+<h1>4. Minimizing expected loss for Bayesian hypothesis testing</h1>
+<hr />
+<p>Given that, in Bayesian statistics, the inference is based on the posterior distribution (as mentioned previously), we often make use of optimization when it comes to hypothesis testing.</p>
+<p><br></p>
+<blockquote>
+<p>The following section includes personal notes and experiments that apply Bayesian hypothesis testing directly into computational intelligence and, thus, diverge significantly from the source material.</p>
+</blockquote>
+<p><br></p>
+<p>Let’s assume that an intelligent agent has two competing hypotheses, <span class="math inline">\(H_1\)</span> and <span class="math inline">\(H_2\)</span>, where</p>
+<p><br></p>
+<p><span class="math inline">\(P(H_1 \space is \space true \space | \space data)\)</span> = posterior probability of <span class="math inline">\(H_1\)</span> <br> <span class="math inline">\(P(H_2 \space is \space true \space | \space data)\)</span> = posterior probability of <span class="math inline">\(H_2\)</span></p>
+<p><br></p>
+<p>Although there are different ways to choose between different hypotheses, considering a loss function is an interesting option given this is a decision problem. Let’s suppose, for this section, that we’re dealing with the following situation: an intelligent agent must decide whether it’s in danger or not. Thus, we have:</p>
+<p><br></p>
+<p><span class="math inline">\(H_1\)</span> = agent is not in danger; <br> <span class="math inline">\(H_2\)</span> = agent is in danger.</p>
+<p><br></p>
+<p>Given those are mutually exclusive possibilities, only one of them will be realized. We can define our loss function as <span class="math inline">\(L(d)\)</span>, with <span class="math inline">\(d\)</span> being a particular action. The agent’s possible decisions are:</p>
+<p><br></p>
+<p><span class="math inline">\(d_1\)</span>: choose <span class="math inline">\(H_1\)</span>: agent decides that it’s in danger <br> <span class="math inline">\(d_1\)</span>: choose <span class="math inline">\(H_1\)</span>: agent decides that it’s in danger</p>
 <p><br></p>
 </div>
 

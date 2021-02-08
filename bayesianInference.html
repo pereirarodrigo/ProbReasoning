@@ -628,10 +628,52 @@ table tr td th:last-of-type {
 <p><br></p>
 <p>Thus, we have two possible false negatives here when either <span class="math inline">\(d_1\)</span> or <span class="math inline">\(d_2\)</span> are wrong, which are:</p>
 <p><br></p>
-<p><strong>Wrong <span class="math inline">\(d_1\)</span> is a false negative</strong>: the agent decides that it’s not in danger when in reality it actually <br> <strong>Possible results:</strong> varied, but can range from an unpleasant situation to the agent being disabled (severe outcome).</p>
+<p><strong>Wrong <span class="math inline">\(d_1\)</span> is a false negative</strong>: the agent decides that it’s not in danger when in reality it actually <br> <strong>Possible results:</strong> varied, but can range from an unpleasant situation to the agent being disabled permanently (severe outcome).</p>
 <p><br></p>
-<p><strong>Wrong <span class="math inline">\(d_2\)</span> is a false negative</strong>: the agent decides that it’s in danger when in reality it actually isn’t <br> <strong>Possible results:</strong> varied but, in general, may include some level of disturbance to its overall performance (light outcome).</p>
+<p><strong>Wrong <span class="math inline">\(d_2\)</span> is a false negative</strong>: the agent decides that it’s in danger when in reality it actually isn’t <br> <strong>Possible results:</strong> varied but, in general, may include some level of disturbance to its overall performance until its safety is assured (light outcome).</p>
 <p><br></p>
+<p>We can see straight away that <span class="math inline">\(d_1\)</span> being a false negative causes a much larger impact than <span class="math inline">\(d_2\)</span>. Thus, using arbitrary numbers, we can define, mathematically, that</p>
+<p><br></p>
+<p><span class="math display">\[L(d_1) = \begin{cases}
+                      0 &amp; if \space d_1 \space is \space right \\
+                      w_1 = 1000 &amp; otherwise
+            \end{cases}\]</span></p>
+<p><br></p>
+<p><span class="math display">\[L(d_2) = \begin{cases}
+                      0 &amp; if \space d_2 \space is \space right \\
+                      w_2 = 50 &amp; otherwise
+            \end{cases}\]</span></p>
+<p><br></p>
+<p>For the final part of this example, lets imagine that our agent is an autonomous construction robot that’s working on a particularly dangerous project. Thus, once again using arbitrary values, lets define our posterior probabilities:</p>
+<p><br></p>
+<p><span class="math inline">\(P(H_1 \space | \space p) \approx 0.35\)</span> - posterior probability of the robot not being in danger while working on the project <br> <span class="math inline">\(P(H_2 \space | \space p) \approx 0.65\)</span> - posterior probability of the robot being in danger while working</p>
+<p><br></p>
+<p>Thus, our expected losses would be</p>
+<p><br></p>
+<p><span class="math inline">\(E(L(d_1)) = 0.35 \times 0 + 0.65 \times 1000 = 650\)</span> <br> <span class="math inline">\(E(L(d_2)) = 0.35 \times 50 + 0.65 \times 0 = 17.5\)</span></p>
+<p><br></p>
+<p>The loss for <span class="math inline">\(d_2\)</span> is much lower than that of <span class="math inline">\(d_1\)</span>, making it the robot’s optimal choice in this situation. The following R script is used to illustrate this example in a more tangible way:</p>
+<pre class="r"><code>robot_choice &lt;- function(d1, d2, p_prob){
+  e_d1 &lt;- numeric()
+  e_d2 &lt;- numeric()
+  
+  for(d in d1){
+    e_d1 &lt;- c(e_d1, d1 * Reduce(&quot;+&quot;, p_prob))
+  }
+  
+  for(d in d2){
+    e_d2 &lt;- c(e_d2, d2 * Reduce(&quot;+&quot;, p_prob))
+  }
+  
+  return (ifelse(which.max(e_d1) &lt; which.max(e_d2), &quot;d1&quot;, &quot;d2&quot;))
+}
+
+dec1 &lt;- c(0, 50)
+dec2 &lt;- c(0, 1000)
+prob &lt;- c(0.35, 0.65)
+
+print(paste0(&quot;The optimal choice is: &quot;, robot_choice(dec1, dec2, prob)))</code></pre>
+<pre><code>## [1] &quot;The optimal choice is: d2&quot;</code></pre>
 </div>
 
 

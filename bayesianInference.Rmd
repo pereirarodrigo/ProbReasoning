@@ -376,11 +376,76 @@ Thus, we have two possible false negatives here when either $d_1$ or $d_2$ are w
 <br>
 
 **Wrong $d_1$ is a false negative**: the agent decides that it's not in danger when in reality it actually  <br>
-**Possible results:** varied, but can range from an unpleasant situation to the agent being disabled (severe outcome).
+**Possible results:** varied, but can range from an unpleasant situation to the agent being disabled permanently (severe outcome).
 
 <br>
 
 **Wrong $d_2$ is a false negative**: the agent decides that it's in danger when in reality it actually isn't <br>
-**Possible results:** varied but, in general, may include some level of disturbance to its overall performance (light outcome).
+**Possible results:** varied but, in general, may include some level of disturbance to its overall performance until its safety is assured (light outcome).
 
 <br>
+
+We can see straight away that $d_1$ being a false negative causes a much larger impact than $d_2$. Thus, using arbitrary numbers, we can define, mathematically, that
+
+<br>
+
+$$L(d_1) = \begin{cases}
+                      0 & if \space d_1 \space is \space right \\
+                      w_1 = 1000 & otherwise
+            \end{cases}$$
+            
+<br>
+
+$$L(d_2) = \begin{cases}
+                      0 & if \space d_2 \space is \space right \\
+                      w_2 = 50 & otherwise
+            \end{cases}$$
+
+<br>
+
+For the final part of this example, lets imagine that our agent is an autonomous construction robot that's working on a particularly dangerous project. Thus, once again using arbitrary values, lets define our posterior probabilities:
+
+<br>
+
+$P(H_1 \space | \space p) \approx 0.35$ - posterior probability of the robot not being in danger while working on the project <br>
+$P(H_2 \space | \space p) \approx 0.65$ - posterior probability of the robot being in danger while working
+
+<br>
+
+Thus, our expected losses would be
+
+<br>
+
+$E(L(d_1)) = 0.35 \times 0 + 0.65 \times 1000 = 650$ <br>
+$E(L(d_2)) = 0.35 \times 50 + 0.65 \times 0 = 17.5$
+
+<br>
+
+The loss for $d_2$ is much lower than that of $d_1$, making it the robot's optimal choice in this situation. The following R script is used to illustrate this example in a more tangible way:
+
+```{r}
+
+# R code that returns the optimal choice between 2 decisions
+# The posterior probabilities are used to calculate the expected loss
+
+robot_choice <- function(d1, d2, p_prob){
+  e_d1 <- numeric()
+  e_d2 <- numeric()
+  
+  for(d in d1){
+    e_d1 <- c(e_d1, d1 * Reduce("+", p_prob))
+  }
+  
+  for(d in d2){
+    e_d2 <- c(e_d2, d2 * Reduce("+", p_prob))
+  }
+  
+  return (ifelse(which.max(e_d1) < which.max(e_d2), "d1", "d2"))
+}
+
+dec1 <- c(0, 50)
+dec2 <- c(0, 1000)
+prob <- c(0.35, 0.65)
+
+print(paste0("The optimal choice is: ", robot_choice(dec1, dec2, prob)))
+```

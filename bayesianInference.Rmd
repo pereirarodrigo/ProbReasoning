@@ -416,8 +416,8 @@ Thus, our expected losses would be
 
 <br>
 
-$E(L(d_1)) = 0.35 \times 0 + 0.65 \times 1000 = 650$ <br>
-$E(L(d_2)) = 0.35 \times 50 + 0.65 \times 0 = 17.5$
+$E[L(d_1)] = 0.35 \times 0 + 0.65 \times 1000 = 650$ <br>
+$E[L(d_2)] = 0.35 \times 50 + 0.65 \times 0 = 17.5$
 
 <br>
 

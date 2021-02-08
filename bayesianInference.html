@@ -593,7 +593,7 @@ table tr td th:last-of-type {
 <p>Given that, in Bayesian statistics, the inference is based on the posterior distribution (as mentioned previously), we often make use of optimization when it comes to hypothesis testing.</p>
 <p><br></p>
 <blockquote>
-<p>The following section includes personal notes and experiments that apply Bayesian hypothesis testing directly into computational intelligence and, thus, diverge significantly from the source material.</p>
+<p>The following section includes personal notes and experiments that apply Bayesian hypothesis testing in computational intelligence and, despite having a similar structure and format, diverge significantly from the source material.</p>
 </blockquote>
 <p><br></p>
 <p>Let’s assume that an intelligent agent has two competing hypotheses, <span class="math inline">\(H_1\)</span> and <span class="math inline">\(H_2\)</span>, where</p>
@@ -606,7 +606,31 @@ table tr td th:last-of-type {
 <p><br></p>
 <p>Given those are mutually exclusive possibilities, only one of them will be realized. We can define our loss function as <span class="math inline">\(L(d)\)</span>, with <span class="math inline">\(d\)</span> being a particular action. The agent’s possible decisions are:</p>
 <p><br></p>
-<p><span class="math inline">\(d_1\)</span>: choose <span class="math inline">\(H_1\)</span>: agent decides that it’s in danger <br> <span class="math inline">\(d_1\)</span>: choose <span class="math inline">\(H_1\)</span>: agent decides that it’s in danger</p>
+<p><span class="math inline">\(d_1\)</span>: choose <span class="math inline">\(H_1\)</span>: agent decides that it’s in danger <br> <span class="math inline">\(d_2\)</span>: choose <span class="math inline">\(H_2\)</span>: agent decides that it’s not in danger</p>
+<p><br></p>
+<p>Each of those decisions comes with a value <span class="math inline">\(w\)</span>, which is a possible event that results from such a choice should the hypothesis be wrong. This value’s impact differs from decision to decision and, for our agent in this scenario, they’d be the following:</p>
+<p><br></p>
+<p>For <strong><span class="math inline">\(d = d_1\)</span></strong>, we have</p>
+<ul>
+<li><strong>Agent is correct:</strong> the agent decides that it is not in danger, and it isn’t. <span class="math inline">\(\Rightarrow L(d_1) = 0\)</span>
+<ul>
+<li><strong>Agent is wrong:</strong> the agent decides that it’s not in danger, but it is. <span class="math inline">\(\Rightarrow L(d_2) = w\)</span></li>
+</ul></li>
+</ul>
+<p><br></p>
+<p>For <strong><span class="math inline">\(d = d_2\)</span></strong>, we have</p>
+<ul>
+<li><strong>Agent is correct:</strong> the agent decides that it’s in danger, and it is. <span class="math inline">\(\Rightarrow L(d_2) = 0\)</span>
+<ul>
+<li><strong>Agent is wrong:</strong> the agent decides that it’s in danger, but it isn’t. <span class="math inline">\(\Rightarrow L(d_2) = w\)</span></li>
+</ul></li>
+</ul>
+<p><br></p>
+<p>Thus, we have two possible false negatives here when either <span class="math inline">\(d_1\)</span> or <span class="math inline">\(d_2\)</span> are wrong, which are:</p>
+<p><br></p>
+<p><strong>Wrong <span class="math inline">\(d_1\)</span> is a false negative</strong>: the agent decides that it’s not in danger when in reality it actually <br> <strong>Possible results:</strong> varied, but can range from an unpleasant situation to the agent being disabled (severe outcome).</p>
+<p><br></p>
+<p><strong>Wrong <span class="math inline">\(d_2\)</span> is a false negative</strong>: the agent decides that it’s in danger when in reality it actually isn’t <br> <strong>Possible results:</strong> varied but, in general, may include some level of disturbance to its overall performance (light outcome).</p>
 <p><br></p>
 </div>
 

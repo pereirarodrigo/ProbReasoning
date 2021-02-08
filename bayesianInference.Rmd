@@ -432,12 +432,12 @@ robot_choice <- function(d1, d2, p_prob){
   e_d1 <- numeric()
   e_d2 <- numeric()
   
-  for(d in d1){
-    e_d1 <- c(e_d1, d1 * Reduce("+", p_prob))
+  for(w in d1){
+    e_d1 <- c(e_d1, w * Reduce("+", p_prob))
   }
   
-  for(d in d2){
-    e_d2 <- c(e_d2, d2 * Reduce("+", p_prob))
+  for(w in d2){
+    e_d2 <- c(e_d2, w * Reduce("+", p_prob))
   }
   
   return (ifelse(which.max(e_d1) < which.max(e_d2), "d1", "d2"))

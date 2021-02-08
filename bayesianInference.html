@@ -653,16 +653,19 @@ table tr td th:last-of-type {
 <p><span class="math inline">\(E(L(d_1)) = 0.35 \times 0 + 0.65 \times 1000 = 650\)</span> <br> <span class="math inline">\(E(L(d_2)) = 0.35 \times 50 + 0.65 \times 0 = 17.5\)</span></p>
 <p><br></p>
 <p>The loss for <span class="math inline">\(d_2\)</span> is much lower than that of <span class="math inline">\(d_1\)</span>, making it the robot’s optimal choice in this situation. The following R script is used to illustrate this example in a more tangible way:</p>
-<pre class="r"><code>robot_choice &lt;- function(d1, d2, p_prob){
+<pre class="r"><code># R code that returns the optimal choice between 2 decisions
+# The posterior probabilities are used to calculate the expected loss
+
+robot_choice &lt;- function(d1, d2, p_prob){
   e_d1 &lt;- numeric()
   e_d2 &lt;- numeric()
   
-  for(d in d1){
-    e_d1 &lt;- c(e_d1, d1 * Reduce(&quot;+&quot;, p_prob))
+  for(w in d1){
+    e_d1 &lt;- c(e_d1, w * Reduce(&quot;+&quot;, p_prob))
   }
   
-  for(d in d2){
-    e_d2 &lt;- c(e_d2, d2 * Reduce(&quot;+&quot;, p_prob))
+  for(w in d2){
+    e_d2 &lt;- c(e_d2, w * Reduce(&quot;+&quot;, p_prob))
   }
   
   return (ifelse(which.max(e_d1) &lt; which.max(e_d2), &quot;d1&quot;, &quot;d2&quot;))

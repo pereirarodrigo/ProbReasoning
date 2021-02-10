@@ -1,4 +1,4 @@
-# bayesianInference
+# bInfer
 
 Bayes' theorem plays a huge role in computational intelligence, a sub-field of artificial intelligence that's mainly concerned with a biologically-inspired approach to machine intelligence. Bayesian inference is often one of the pillars behind computational learning theory, and it works by applying concepts of statistical inference in such a way that, as more information becomes available, a hypothesis is repeatedly updated and perfected.
 

@@ -10,6 +10,7 @@ author:
 output:
   html_document:
     df_print: paged
+    css: "style.css"
 ---
 
 ```{r setup, include=FALSE}

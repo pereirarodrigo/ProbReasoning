@@ -10,33 +10,17 @@ author:
 output:
   html_document:
     df_print: paged
-    css: "style.css"
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+# Loading the .css file. For some reason, YAML seems to ignore it if it isn't done this way
+
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+
 ---
-
-<style>
-blockquote {
-  background: #E8E8E8;
-  border-left: 10px solid #D0D0D0;
-}
-
-blockquote:before {
-  color: #D0D0D0;
-  line-height: 0.1em;
-  margin-right: 0.25em;
-  vertical-align: -0.4em;
-}
-
-blockquote p {
-  display: inline;
-  font-size: 0.8em;
-}
-</style>
 
 > This is a notebook used for studying Bayesian inference in computational intelligence, which is focused on its theoretical applications. The R programming language was chosen for the practical part of this project, as its orientation towards statistical analysis, ease of use and modular nature makes it well suited for this kind of task.  
 
@@ -213,38 +197,6 @@ A quick example is given below, where we have some random data, our estimate is 
 
 <br>
 
-<style>
-.table {
-    width: 30%;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid black;
-    border-collapse: collapse;
-}
-
-th:nth-child(1){
-     width: 30%;
-}
-
-th:nth-child(2){
-     width: 40%;
-}
-
-th:nth-child(3){
-     width: 30%;
-}
-
-table tr td th {
-    border-right: 1px solid black;
-    border-left: 1px solid black;
-    border-bottom: 1px solid black;
-    color: black
-}
-
-table tr td th:last-of-type {
-    border: none;
-}
-</style>
 
 |$i$ |$x_i$  |$L_0: 0/1$
 |:--:|:-----:|:-------:

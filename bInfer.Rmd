@@ -73,7 +73,7 @@ data("iris")
 iris_dataset <- as.data.frame(iris)
 bayes <- naiveBayes(Species ~., data = iris_dataset)
 
-# Check the model
+# Checking the model
 bayes
 
 bayes_predictions <- predict(bayes, iris_dataset)

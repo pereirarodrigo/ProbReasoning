@@ -16,8 +16,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Loading the .css file. For some reason, YAML seems to ignore it if it isn't done this way
-
 <link rel="stylesheet" type="text/css" href="styles.css"/>
 
 ---

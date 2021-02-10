@@ -12,11 +12,11 @@ output:
     df_print: paged
 ---
 
+<link rel="stylesheet" type="text/css" href="styles.css"/>
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-
-<link rel="stylesheet" type="text/css" href="styles.css"/>
 
 ---
 

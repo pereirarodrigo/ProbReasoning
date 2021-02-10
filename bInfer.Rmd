@@ -299,8 +299,8 @@ Given those are mutually exclusive possibilities, only one of them will be reali
 
 <br>
 
-$d_1$: choose $H_1$: agent decides that it's in danger <br>
-$d_2$: choose $H_2$: agent decides that it's not in danger 
+$d_1$: choose $H_1$: agent decides that it is not in danger <br>
+$d_2$: choose $H_2$: agent decides that it is in danger 
 
 <br>
 

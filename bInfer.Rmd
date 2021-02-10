@@ -246,7 +246,7 @@ By calculating the mean of some random data, and with our estimate being 7, we h
 
 <br>
 
-<center> **Table 3:** $L_2$: linear loss for estimate 7 </center>
+<center> **Table 3:** $L_2$: squared loss for estimate 7 </center>
 
 <br>
 

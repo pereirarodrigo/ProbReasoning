@@ -326,7 +326,7 @@ Thus, we have two possible false negatives here when either $d_1$ or $d_2$ are w
 
 <br>
 
-**Wrong $d_1$ is a false negative**: the agent decides that it's not in danger when in reality it actually isn't <br>
+**Wrong $d_1$ is a false negative**: the agent decides that it's not in danger when in reality it actually is <br>
 **Possible results:** varied, but can range from an unpleasant situation to the agent being disabled permanently (severe outcome).
 
 <br>

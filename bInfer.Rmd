@@ -400,3 +400,13 @@ prob <- c(0.35, 0.65)
 
 print(paste0("The optimal choice is: ", robot_choice(dec1, dec2, prob)))
 ```
+
+---
+
+# 5. Conclusion
+
+***
+
+Bayesian inference is a promising component of computational learning theory. Its capacity to refine a hypothesis through iteration is strikingly similar to what humans do when learning. However, as is the case with statistical analysis and, more specifically, statistical inference in general, Bayesian inference depends on a substantial amount of well-defined data to work properly; we, on the other hand, can learn with only a few examples (although this is not universal). Subsequent advances may address this problem, at which point this technique might cement itself even further as a key player in computational intelligence.
+
+---
